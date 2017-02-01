@@ -84,6 +84,7 @@ void cleanupXWindows(void);
 void check_mouse(XEvent *e, Game *game);
 int check_keys(XEvent *e, Game *game);
 void movement(Game *game);
+void collisions(Shape *s, Particle *p);
 void render(Game *game);
 
 
@@ -99,10 +100,10 @@ int main(void)
 	game.bubbler = false;
 
 	//declare a box shape
-	game.box.width = 100;
+	game.box.width = 75;
 	game.box.height = 10;
-	game.box.center.x = 120 + 5*65;
-	game.box.center.y = 500 - 5*60;
+	game.box.center.x = 500 - 5*65;
+	game.box.center.y = 725 - 5*60;
 
 	//start animation
 	while (!done) {
@@ -256,7 +257,7 @@ void movement(Game *game)
 
 	if (game->bubbler != 0)
 	{
-		makeParticle(game, game->mouse[0], game->mouse[1]);
+		makeParticle(game, game->mouse[0] +- 5 , game->mouse[1]);
 	}
 	
 	for(int i = 0; i < game->n; i++)
